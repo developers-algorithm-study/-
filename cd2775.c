@@ -1,26 +1,14 @@
 #include<stdio.h>
 
 int main() {
-	double hp, def, limit, dmg, min_dmg, tmp;
+	double hp, def, limit, dmg, answer;
 
 	scanf("%lf %lf %lf", &hp, &def, &limit);
 	scanf("%lf", &dmg);
 
-	min_dmg = hp / limit;
-	if (min_dmg > dmg){
-		puts("X");
-	}
-	else if (min_dmg <= dmg * (100 - def)) {
-		puts("O");
-	}
-	else {
-		tmp = 100 - ((min_dmg / dmg) * 100);
-		if (tmp / def > 0) {
-			printf("%0.6lf", (1 - tmp / def) * 100);
-		}
-		else {
-			printf("%0.6lf", (tmp / def - 1) * 100);
-		}
-	}
+	answer = (1 - (100 - ((hp / limit / dmg) * 100)) / def) * 100;
+	if (answer > 100) puts("X");
+	else if (answer <= 0) puts("O");
+	else printf("%0.6f", answer);
 	return 0;
 }
